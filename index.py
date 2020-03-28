@@ -1,6 +1,7 @@
 import config
 
-config.conn.set("x1","hello")
+conn=config.conn
+conn.set("name","nyc")
 
-val = config.conn.get("x1")
+val = conn.get("name")
 print( val)
