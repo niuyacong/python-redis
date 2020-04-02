@@ -38,11 +38,19 @@ def clean_sessions(conn):
         session_keys=[]
         for token in tokens:
             session_keys.append('viewed:'+token)
+            session_keys.append('cart:'+token)
         # 删除超过最大限制的旧数据 浏览数据
         conn.delete(*session_keys)
         # 删除旧数据的登录信息
         conn.hdel('login:',*tokens)
         # 删除旧数据的最近登录记录
-        conn.zrem('recent:'*tokens)
+        conn.zrem('recent:',*tokens)
+        # 删除购物车的记录
+        conn.hdel('cart:',*tokens)
 
-        
+# 购物车功能
+def add_to_cart(conn,session,item,count):
+    if  count<=0:
+        conn.hrem('cart:'+session,item)
+    else:
+        conn.hset('cart:'+session,item,count)
