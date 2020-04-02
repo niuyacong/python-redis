@@ -20,6 +20,10 @@ def update_token(conn,token,user,item=None):
         conn.zadd('viewed:'+token,item,timestamp)
         # 只保留前25个浏览记录
         conn.zremrangebyrank('viewed:'+token,0,-26)
+        # 记录商品的浏览次数，并根据浏览次数对商品进行排序
+        conn.zincrby('viewed:',item,-1)
+
+
 
 # 限制会话数据的数量，只保留最新的1000万个会话。
 # 在本地以守护进程运行，比网络请求要快很多
