@@ -22,6 +22,7 @@ def update_token(conn,token,user,item=None):
         conn.zremrangebyrank('viewed:'+token,0,-26)
 
 # 限制会话数据的数量，只保留最新的1000万个会话。
+# 在本地以守护进程运行，比网络请求要快很多
 QUIT=False
 LIMIT=1000000
 def clean_sessions(conn):
@@ -43,3 +44,5 @@ def clean_sessions(conn):
         conn.hdel('login:',*tokens)
         # 删除旧数据的最近登录记录
         conn.zrem('recent:'*tokens)
+
+        
