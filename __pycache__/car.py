@@ -9,4 +9,3 @@ def add_to_cart(conn,session,item,count):
     else:
         conn.hset('cart:'+session,item,count)
     
-
