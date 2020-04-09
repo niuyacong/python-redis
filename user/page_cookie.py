@@ -2,7 +2,7 @@ import config.conn
 import time
 conn=config.conn
 
-# 网页缓存
+# 网页缓存123
 
 # def cache_request(conn,request,callback):
 #     # 不能被缓存的请求，直接调用回调函数
