@@ -47,9 +47,9 @@ def cache_rows(conn):
             conn.delete('inv:'+row_id)
             continue
         # 读取数据行
-        row=Inventory.get(row_id)
-        conn.zadd('schedule:',row_id,now+delay)
-        conn.set('inv:'+row_id,json.dumps(row.to_dict()))
+        # row=Inventory.get(row_id)
+        # conn.zadd('schedule:',row_id,now+delay)
+        # conn.set('inv:'+row_id,json.dumps(row.to_dict()))
 
 
 

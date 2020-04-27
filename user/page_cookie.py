@@ -35,16 +35,16 @@ def rescale_viewed(conn):
             time.sleep(300)
 
 # 页面是否需要被缓存
-def can_cache(conn,request):
+# def can_cache(conn,request):
     # 尝试从页面中取出商品id
-    item_id=extract_item_id(request)
+    # item_id=extract_item_id(request)
     # 检查这个页面能否被缓存以及这个页面是否为商品页面
-    if  not item_id or is_dynamic(request):
-        return False
+    # if  not item_id or is_dynamic(request):
+    #     return False
     # 取得商品浏览次数排名
-    rank=conn.zrank('viewed:',item_id)
+    # rank=conn.zrank('viewed:',item_id)
     # 根据商品的浏览次数排名来判断是否需要缓存这个页面
-    return rank is not None or rank<10000
+    # return rank is not None or rank<10000
 
 # 如果我们想以最少的代价来存储更多的页面
 # 那可以考虑先对页面进行压缩，然后再缓存到redis里面
